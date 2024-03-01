@@ -1,0 +1,41 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[character]
+success_symbol = "🫡"
+error_symbol = "😱"
+
+[git_commit]
+tag_symbol = " tag "
+
+[git_status]
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
+
+[deno]
+symbol = "🦕 "
+
+[docker_context]
+symbol = "🐳 "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = "🩵 "
+
+[nodejs]
+symbol = "🟨 "
+version_format = "v${major}"
+
+[python]
+symbol = "🐍 "
+
+[sudo]
+symbol = "sudo "
+
+[gcloud]
+disabled = true

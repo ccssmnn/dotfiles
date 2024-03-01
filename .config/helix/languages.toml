@@ -1,0 +1,67 @@
+[language-server.eslint]
+args = ["--stdio"] # should come by def with helix
+command = "vscode-eslint-language-server"
+
+[language-server.eslint.config]
+validate = "on" # I assume this enabled eslit to validate the file, which now shows me counts for errors, warnings, etc in helix
+experimental = { useFlatConfig = false } # not sure why this is here
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = "" # seems redundant, why do we need to override this, should get detected autom.
+
+[language-server.eslint.config.codeAction]
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true # why?
+
+[language-server.eslint.config.codeActionOnSave]
+enable = true
+mode = "fixAll"
+
+[language-server.eslint.config.workingDirectory]
+mode = "location" # do we need to override this?
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint" ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint" ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint" ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint" ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
