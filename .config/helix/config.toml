@@ -1,13 +1,37 @@
 theme = "github_dark_transparent"
+
 [editor]
 line-number = "relative"
 color-modes = true
 cursorline = true
+
 [editor.file-picker]
 hidden = false
+
+[editor.indent-guides]
+character = "╎"
+render = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "underline"
+select = "underline"
+
 [keys.normal]
+"esc" = [":wa"]
+
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+A-x = "extend_to_line_bounds"
+X = ["extend_line_up", "extend_to_line_bounds"]
+
 up = "no_op"
 down = "no_op"
 left = "no_op"
@@ -16,6 +40,10 @@ pageup = "no_op"
 pagedown = "no_op"
 home = "no_op"
 end = "no_op"
+
+[keys.select]
+A-x = "extend_to_line_bounds"
+X = ["extend_line_up", "extend_to_line_bounds"]
 
 [keys.insert]
 up = "no_op"
