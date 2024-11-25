@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# install node version manager and node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 22
+
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -7,26 +11,21 @@
 brew install \
   tmux \
   starhip \
-  node@20 \
   gh \
-  go \
   helix \
-  lazygit
+  lazygit \
+  zoxide \
+  fzf \
+  xplr \
+  cloc
 
 # install tooling for developing in nodejs
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 npm install -g \
   prettier \
   bash-language-server \
   typescript-language-server \
   @tailwindcss/language-server \
   vscode-langservers-extracted
-
-# install tooling for developing in go
-go install golang.org/x/tools/gopls@latest
-go install github.com/go-delve/delve/cmd/dlv@latest
-go install golang.org/x/tools/cmd/goimports@latest
-go install github.com/cheat/cheat/cmd/cheat@latest
 
 # create symlinks
 

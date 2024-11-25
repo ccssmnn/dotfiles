@@ -1,8 +1,9 @@
-theme = "github_dark_transparent"
+theme = "catppuccin_mocha"
 
 [editor]
 line-number = "relative"
 color-modes = true
+scrolloff = 10
 cursorline = true
 
 [editor.file-picker]
