@@ -1,8 +1,10 @@
 theme = "catppuccin_mocha"
 
 [editor]
+bufferline = "multiple"
 line-number = "relative"
 color-modes = true
+true-color = true
 scrolloff = 10
 cursorline = true
 
@@ -14,6 +16,7 @@ character = "╎"
 render = true
 
 [editor.lsp]
+auto-signature-help = false
 display-messages = true
 
 [editor.statusline]
@@ -21,7 +24,7 @@ left = ["mode", "spinner", "version-control", "file-name"]
 
 [editor.cursor-shape]
 insert = "bar"
-normal = "underline"
+normal = "block"
 select = "underline"
 
 [keys.normal]
@@ -32,6 +35,11 @@ C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befor
 
 A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
+
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+"A-w" = ":buffer-close"
+"A-/" = "repeat_last_motion"
 
 up = "no_op"
 down = "no_op"
