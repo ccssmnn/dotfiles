@@ -11,10 +11,6 @@ cursorline = true
 [editor.file-picker]
 hidden = false
 
-[editor.indent-guides]
-character = "╎"
-render = true
-
 [editor.lsp]
 auto-signature-help = false
 display-messages = true
@@ -30,8 +26,6 @@ select = "underline"
 [keys.normal]
 "esc" = [":wa"]
 
-C-g = ":sh tmux popup -d \"#{pane_current_path}\" -xC -yC -w80% -h80% -E lazygit"
-
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 
@@ -43,25 +37,6 @@ X = ["extend_line_up", "extend_to_line_bounds"]
 "A-w" = ":buffer-close"
 "A-/" = "repeat_last_motion"
 
-up = "no_op"
-down = "no_op"
-left = "no_op"
-right = "no_op"
-pageup = "no_op"
-pagedown = "no_op"
-home = "no_op"
-end = "no_op"
-
 [keys.select]
 A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
-
-[keys.insert]
-up = "no_op"
-down = "no_op"
-left = "no_op"
-right = "no_op"
-pageup = "no_op"
-pagedown = "no_op"
-home = "no_op"
-end = "no_op"
