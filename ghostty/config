@@ -1,0 +1,17 @@
+theme = catppuccin-mocha
+
+font-family = CaskaydiaCove Nerd Font Mono
+font-size = 14
+
+cursor-style-blink = false
+
+adjust-cell-height = 50%
+
+window-padding-balance = true
+window-padding-color = extend
+
+shell-integration-features = no-cursor
+mouse-hide-while-typing = true 
+
+macos-option-as-alt = true
+macos-titlebar-style = transparent
