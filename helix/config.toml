@@ -6,6 +6,11 @@ color-modes = true
 true-color = true
 scrolloff = 10
 cursorline = true
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "error"
 
 [editor.file-picker]
 hidden = false
@@ -31,10 +36,7 @@ C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befor
 A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
 
-"A-," = "goto_previous_buffer"
-"A-." = "goto_next_buffer"
 "A-w" = ":buffer-close"
-"A-/" = "repeat_last_motion"
 
 [keys.select]
 A-x = "extend_to_line_bounds"
