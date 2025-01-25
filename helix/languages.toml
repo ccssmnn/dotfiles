@@ -49,7 +49,7 @@ name = "astro"
 scope = "source.astro"
 injection-regex = "astro"
 file-types = ["astro"]
-language-servers = ["astro-ls"]
+language-servers = ["astro-ls", "tailwindcss-ls" ]
 formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
 auto-format = true
 
