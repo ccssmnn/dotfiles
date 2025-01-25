@@ -28,9 +28,13 @@ corepack enable pnpm
 
 # install tooling for developing in nodejs
 pnpm add -g \
+  typescript \
   prettier \
+  prettier-plugin-tailwindcss \
+  prettier-plugin-astro \
   typescript-language-server \
   @tailwindcss/language-server \
+  @astrojs/language-server \
   vscode-langservers-extracted
 ```
 

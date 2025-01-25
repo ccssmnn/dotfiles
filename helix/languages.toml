@@ -39,18 +39,19 @@ name = "go"
 auto-format = true
 formatter = { command = "goimports" }
 
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+config = { typescript = { tsdk = "/Users/carlassmann/Library/pnpm/global/5/node_modules/typescript/lib/" }}
+
 [[language]]
 name = "astro"
 scope = "source.astro"
 injection-regex = "astro"
 file-types = ["astro"]
 language-servers = ["astro-ls"]
+formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
 auto-format = true
-
-[language-server.astro-ls]
-command = "astro-ls"
-args = ["--stdio"]
-config = {  typescript = {    tsdk = "~/.nvm/versions/node/v22.11.0/lib/node_modules/typescript/lib"  },  environment = "node"}
 
 [[language]]
 name = "prisma"
