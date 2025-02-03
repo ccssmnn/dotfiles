@@ -1,11 +1,11 @@
 theme = catppuccin-mocha
 
 font-family = GeistMono Nerd Font
-font-size = 14
+font-thicken = true
+font-size = 13
+adjust-cell-height = 50%
 
 cursor-style-blink = false
-
-adjust-cell-height = 50%
 
 window-padding-balance = true
 window-padding-color = extend
@@ -14,4 +14,3 @@ shell-integration-features = no-cursor
 mouse-hide-while-typing = true 
 
 macos-option-as-alt = left
-macos-titlebar-style = transparent
