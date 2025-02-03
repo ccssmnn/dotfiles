@@ -4,13 +4,15 @@ theme = "catppuccin_mocha"
 line-number = "relative"
 color-modes = true
 true-color = true
-scrolloff = 10
+scrolloff = 5
 cursorline = true
 end-of-line-diagnostics = "hint"
 
+[editor.soft-wrap]
+enable = true
+
 [editor.inline-diagnostics]
 cursor-line = "hint"
-other-lines = "error"
 
 [editor.file-picker]
 hidden = false
