@@ -33,6 +33,7 @@ pnpm add -g \
   prettier-plugin-tailwindcss \
   prettier-plugin-astro \
   typescript-language-server \
+  @prisma/language-server \
   @tailwindcss/language-server \
   @astrojs/language-server \
   vscode-langservers-extracted
