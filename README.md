@@ -8,7 +8,7 @@ Install [Homebrew](https://brew.sh)
 brew install --cask ghostty
 
 brew install \
-  starhip \
+  starship \
   gh \
   helix \
   lazygit \

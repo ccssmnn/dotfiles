@@ -1,6 +1,6 @@
 theme = "catppuccin_mocha"
-
 [editor]
+shell = [ "zsh", "-ic" ]
 line-number = "relative"
 color-modes = true
 true-color = true
@@ -31,6 +31,7 @@ select = "underline"
 
 [keys.normal]
 "esc" = [":wa"]
+L = "@|tags_around_selection<ret>sxxx<ret>c"
 
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]

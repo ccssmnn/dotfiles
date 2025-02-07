@@ -18,3 +18,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# utility to insert tags around a selection in helix
+function tags_around_selection() {
+  echo "<xxx>"
+  cat
+  echo "</xxx>"
+}
