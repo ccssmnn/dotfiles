@@ -31,7 +31,6 @@ select = "underline"
 
 [keys.normal]
 "esc" = [":wa"]
-L = "@|tags_around_selection<ret>sxxx<ret>c"
 
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
@@ -44,3 +43,13 @@ X = ["extend_line_up", "extend_to_line_bounds"]
 [keys.select]
 A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
+
+[keys.normal.L]
+a = "@|ccssmnn-ai<space>-f<space><C-r>%<ret>"
+s = "@|ccssmnn-sort<ret>"
+t = "@|ccssmnn-tags<ret>sxxx<ret>c"
+
+[keys.select.L]
+a = "@|ccssmnn-ai<space>-f<space><C-r>%<ret>"
+s = "@|ccssmnn-sort<ret>"
+t = "@|ccssmnn-tags<ret>sxxx<ret>c"

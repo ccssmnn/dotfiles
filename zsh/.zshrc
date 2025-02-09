@@ -19,9 +19,14 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# utility to insert tags around a selection in helix
-function tags_around_selection() {
-  echo "<xxx>"
-  cat
-  echo "</xxx>"
+function ccssmnn-tags() {
+  node ~/Projects/dotfiles/scripts/bin/tags.js "$@"
+}
+
+function ccssmnn-sort() {
+  node ~/Projects/dotfiles/scripts/bin/sort.js "$@"
+}
+
+function ccssmnn-ai() {
+  node ~/Projects/dotfiles/scripts/bin/ai.js "$@"
 }

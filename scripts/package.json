@@ -1,0 +1,16 @@
+{
+  "name": "@ccssmnn/scripts",
+  "private": "true",
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/google": "^1.1.11",
+    "ai": "^4.1.26",
+    "dotenv": "^16.4.7"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "devDependencies": {
+    "@types/node": "22",
+    "prettier": "^3.5.0",
+    "typescript": "^5.7.3"
+  }
+}
