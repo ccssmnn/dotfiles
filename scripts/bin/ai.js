@@ -9,6 +9,7 @@ import { stdin } from "node:process";
 import * as dotenv from "dotenv";
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
+import { removeCodeFence } from "../src/utils.js";
 
 async function ai() {
   readEnvFromLocalFile();
@@ -83,14 +84,4 @@ function readEnvFromLocalFile() {
   let __filename = fileURLToPath(import.meta.url);
   let envPath = resolve(dirname(__filename), "..", ".env");
   dotenv.config({ path: envPath });
-}
-
-/** @param {string} response */
-function removeCodeFence(response) {
-  let codeFenceRegex = /```[a-zA-Z]*\n([\s\S]*?)```/g;
-
-  let match = codeFenceRegex.exec(response);
-  if (match) return match[1];
-
-  return response;
 }
