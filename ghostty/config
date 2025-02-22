@@ -1,4 +1,4 @@
-theme = rose-pine
+theme = light:rose-pine-dawn,dark:rose-pine
 
 font-family = GeistMono Nerd Font
 font-thicken = true

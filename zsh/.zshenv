@@ -1,10 +1,15 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# fnm
+FNM_PATH="/Users/carlassmann/Library/Application Support/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/Users/carlassmann/Library/Application Support/fnm:$PATH"
+  eval "`fnm env`"
+fi
 
-nvm use 22 --silent
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+fnm use --log-level quiet 22
 
 # pnpm
 export PNPM_HOME="/Users/carlassmann/Library/pnpm"
