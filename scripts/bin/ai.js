@@ -11,13 +11,12 @@ import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 import { removeCodeFence } from "../src/utils.js";
 
-async function ai() {
-  readEnvFromLocalFile();
-  let input = await readLinesFromStdin();
-  let files = await readFilesFromArgs();
-  let aiResponse = await generateText({
-    model: google("gemini-2.0-flash"),
-    prompt: `
+readEnvFromLocalFile();
+let input = await readLinesFromStdin();
+let files = await readFilesFromArgs();
+let aiResponse = await generateText({
+  model: google("gemini-2.0-flash"),
+  prompt: `
 You are a code assistant that helps developers improve their code. You receive an input that needs to be replaced, and your task is to suggest a replacement.
 
 Some rules to follow:
@@ -36,22 +35,13 @@ ${input}
 Final note:
 It is important that you only respond with text that can directly replace the input, without any surrounding code fences or explanations.
 `,
-  });
-  if (!aiResponse.text) {
-    console.log(`// ERROR: the model returned an empty string\n${input}`);
-  } else {
-    console.log(removeCodeFence(aiResponse.text));
-  }
-}
+});
 
-ai()
-  .then(() => {
-    process.exit(0);
-  })
-  .catch(async (err) => {
-    console.error("An error occurred:", err);
-    process.exit(1);
-  });
+if (!aiResponse.text) {
+  console.log(`// ERROR: the model returned an empty string\n${input}`);
+} else {
+  console.log(removeCodeFence(aiResponse.text));
+}
 
 async function readLinesFromStdin() {
   let lines = [];
