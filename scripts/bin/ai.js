@@ -5,18 +5,16 @@ import { fileURLToPath } from "node:url";
 import fs from "node:fs/promises";
 import * as readline from "node:readline";
 import { stdin } from "node:process";
-
-import * as dotenv from "dotenv";
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 import { removeCodeFence } from "../src/utils.js";
 
-let __filename = fileURLToPath(import.meta.url);
-let envPath = resolve(dirname(__filename), "..", ".env");
-dotenv.config({ path: envPath });
+await readLocalEnvFile();
 
 let input = await readLinesFromStdin();
+
 let files = await readFilesFromArgs();
+
 let aiResponse = await generateText({
   model: google("gemini-2.0-flash"),
   prompt: `
@@ -53,6 +51,23 @@ if (!aiResponse.text) {
   console.log(removeCodeFence(aiResponse.text));
 }
 
+async function readLocalEnvFile() {
+  let __filename = fileURLToPath(import.meta.url);
+  let envPath = resolve(dirname(__filename), "..", ".env");
+
+  try {
+    let envFile = await fs.readFile(envPath, { encoding: "utf-8" });
+    envFile.split("\n").forEach((line) => {
+      let [key, value] = line.split("=");
+      if (key && value) {
+        process.env[key.trim()] = value.trim();
+      }
+    });
+  } catch (error) {
+    console.error("Failed to load .env file:", error);
+  }
+}
+
 async function readLinesFromStdin() {
   let lines = [];
   let rl = readline.createInterface({ input: stdin });
@@ -79,5 +94,3 @@ async function readFilesFromArgs() {
 
   return files;
 }
-
-function readEnvFromLocalFile() {}

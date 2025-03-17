@@ -14,9 +14,6 @@ importers:
       ai:
         specifier: ^4.1.26
         version: 4.1.26(react@19.0.0)(zod@3.24.1)
-      dotenv:
-        specifier: ^16.4.7
-        version: 16.4.7
     devDependencies:
       '@types/node':
         specifier: '22'
@@ -102,10 +99,6 @@ packages:
 
   diff-match-patch@1.0.5:
     resolution: {integrity: sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw==}
-
-  dotenv@16.4.7:
-    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
-    engines: {node: '>=12'}
 
   eventsource-parser@3.0.0:
     resolution: {integrity: sha512-T1C0XCUimhxVQzW4zFipdx0SficT651NnkR0ZSH3yQwh+mFMdLfgjABVi4YtMTtaL4s168593DaoaRLMqryavA==}
@@ -230,8 +223,6 @@ snapshots:
   dequal@2.0.3: {}
 
   diff-match-patch@1.0.5: {}
-
-  dotenv@16.4.7: {}
 
   eventsource-parser@3.0.0: {}
 
