@@ -2,11 +2,13 @@ theme = light:rose-pine-dawn,dark:rose-pine
 
 font-family = GeistMono Nerd Font
 font-thicken = true
-font-size = 13
+font-size = 14
 adjust-cell-height = 50%
 
 cursor-style-blink = false
 
+window-width = 3000
+window-height = 2000
 window-padding-balance = true
 window-padding-color = extend
 

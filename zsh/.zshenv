@@ -30,3 +30,7 @@ function ccssmnn-sort() {
 function ccssmnn-ai() {
   node ~/Projects/dotfiles/scripts/bin/ai.js "$@"
 }
+
+function ccssmnn-chat-md() {
+  node ~/Projects/dotfiles/scripts/bin/chat-md.js "$@"
+}

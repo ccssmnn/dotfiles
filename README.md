@@ -15,6 +15,7 @@ brew install \
   lazydocker \
   zoxide \
   fzf \
+  marksman \
   xplr 
 ```
 

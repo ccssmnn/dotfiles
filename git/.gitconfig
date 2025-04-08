@@ -3,3 +3,5 @@
 [user]
 	email = assmann@hey.com
 	name = Carl Assmann
+[core]
+	editor = hx +

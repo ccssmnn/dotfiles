@@ -52,6 +52,8 @@ A = "@|ccssmnn-ai<space>-f<space>'<C-r>%'"
 s = "@|ccssmnn-sort<ret>"
 t = "@|ccssmnn-tags<ret>sxxx<ret>c"
 
+c = "@:wa<ret>:sh<space>ccssmnn-chat-md<space>'<C-r>%'<ret>:rla<ret>"
+
 [keys.select.L]
 a = "@|ccssmnn-ai<space>-f<space>'<C-r>%'<ret>"
 A = "@|ccssmnn-ai<space>-f<space>'<C-r>%'"
