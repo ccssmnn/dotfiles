@@ -4,3 +4,4 @@ eval "$(zoxide init zsh --cmd cd)"
 
 source <(fzf --zsh)
 
+export EDITOR="hx"

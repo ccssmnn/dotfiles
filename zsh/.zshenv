@@ -18,19 +18,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-function ccssmnn-tags() {
-  node ~/Projects/dotfiles/scripts/bin/tags.js "$@"
-}
-
-function ccssmnn-sort() {
-  node ~/Projects/dotfiles/scripts/bin/sort.js "$@"
-}
-
-function ccssmnn-ai() {
-  node ~/Projects/dotfiles/scripts/bin/ai.js "$@"
-}
-
-function ccssmnn-chat-md() {
-  node ~/Projects/dotfiles/scripts/bin/chat-md.js "$@"
-}

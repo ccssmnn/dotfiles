@@ -16,7 +16,7 @@ let input = await readLinesFromStdin();
 let files = await readFilesFromArgs();
 
 let aiResponse = await generateText({
-  model: google("gemini-2.0-flash"),
+  model: google("gemini-2.5-flash-preview-04-17"),
   prompt: `
 ## Some rules to follow:
 

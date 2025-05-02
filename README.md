@@ -29,6 +29,7 @@ corepack enable pnpm
 
 # install tooling for developing in nodejs
 pnpm add -g \
+  @ccssmnn/md-ai \
   typescript \
   prettier \
   prettier-plugin-tailwindcss \
