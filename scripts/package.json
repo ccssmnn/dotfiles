@@ -8,11 +8,11 @@
     "hx-tags": "./bin/tags.js"
   },
   "dependencies": {
-    "@ai-sdk/google": "^1.2.14",
-    "ai": "^4.3.13"
+    "@ai-sdk/openai": "^1.3.22",
+    "ai": "^4.3.16"
   },
   "devDependencies": {
-    "@types/node": "^22.15.3",
+    "@types/node": "^22.15.29",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   },

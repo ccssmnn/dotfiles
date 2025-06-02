@@ -53,6 +53,9 @@ language-servers = ["astro-ls", "tailwindcss-ls" ]
 formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
 auto-format = true
 
+[language-server]
+prisma-language-server = { command = "prisma-language-server", args = ["--stdio"], config = { prisma = { enableDiagnostics = true } } }
+
 [[language]]
 name = "prisma"
 auto-format = true
@@ -60,3 +63,4 @@ auto-format = true
 [[language]]
 name = "json"
 language-servers = ["vscode-json-language-server"]
+

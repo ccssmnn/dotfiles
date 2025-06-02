@@ -2,7 +2,7 @@ theme = light:rose-pine-dawn,dark:rose-pine
 
 font-family = GeistMono Nerd Font
 font-thicken = true
-font-size = 14
+font-size = 15
 adjust-cell-height = 50%
 
 cursor-style-blink = false
