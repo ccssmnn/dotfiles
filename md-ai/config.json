@@ -1,0 +1,5 @@
+{
+  "model": "google:gemini-2.0-flash",
+  "editor": "hx +99999",
+  "auto": true
+}
