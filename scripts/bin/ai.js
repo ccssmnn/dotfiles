@@ -7,7 +7,7 @@ import * as readline from "node:readline";
 import { stdin } from "node:process";
 import { generateText } from "ai";
 import { removeCodeFence } from "../src/utils.js";
-import { openai } from "@ai-sdk/openai";
+import { google } from "@ai-sdk/google";
 
 await readLocalEnvFile();
 
@@ -16,7 +16,7 @@ let input = await readLinesFromStdin();
 let files = await readFilesFromArgs();
 
 let aiResponse = await generateText({
-  model: openai("gpt-4.1-mini"),
+  model: google("gemini-2.0-flash"),
   prompt: `
 ## Some rules to follow:
 

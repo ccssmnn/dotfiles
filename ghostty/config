@@ -16,3 +16,4 @@ shell-integration-features = no-cursor
 mouse-hide-while-typing = true 
 
 macos-option-as-alt = left
+keybind = shift+enter=text:\n

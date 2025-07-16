@@ -1,5 +1,6 @@
 {
   "model": "google:gemini-2.0-flash",
   "editor": "hx +99999",
+  "system": "/Users/carlassmann/Projects/dotfiles/md-ai/SYSTEM.md",
   "auto": true
 }
