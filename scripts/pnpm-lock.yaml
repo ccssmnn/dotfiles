@@ -10,10 +10,13 @@ importers:
     dependencies:
       '@ai-sdk/google':
         specifier: ^2.0.14
-        version: 2.0.14(zod@3.24.1)
+        version: 2.0.14(zod@4.1.9)
       ai:
         specifier: ^5.0.44
-        version: 5.0.44(zod@3.24.1)
+        version: 5.0.44(zod@4.1.9)
+      zod:
+        specifier: ^4.1.9
+        version: 4.1.9
     devDependencies:
       '@types/node':
         specifier: ^22.18.3
@@ -85,29 +88,29 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
-  zod@3.24.1:
-    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
+  zod@4.1.9:
+    resolution: {integrity: sha512-HI32jTq0AUAC125z30E8bQNz0RQ+9Uc+4J7V97gLYjZVKRjeydPgGt6dvQzFrav7MYOUGFqqOGiHpA/fdbd0cQ==}
 
 snapshots:
 
-  '@ai-sdk/gateway@1.0.23(zod@3.24.1)':
+  '@ai-sdk/gateway@1.0.23(zod@4.1.9)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.9(zod@3.24.1)
-      zod: 3.24.1
+      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.9)
+      zod: 4.1.9
 
-  '@ai-sdk/google@2.0.14(zod@3.24.1)':
+  '@ai-sdk/google@2.0.14(zod@4.1.9)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.9(zod@3.24.1)
-      zod: 3.24.1
+      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.9)
+      zod: 4.1.9
 
-  '@ai-sdk/provider-utils@3.0.9(zod@3.24.1)':
+  '@ai-sdk/provider-utils@3.0.9(zod@4.1.9)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@standard-schema/spec': 1.0.0
       eventsource-parser: 3.0.6
-      zod: 3.24.1
+      zod: 4.1.9
 
   '@ai-sdk/provider@2.0.0':
     dependencies:
@@ -121,13 +124,13 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  ai@5.0.44(zod@3.24.1):
+  ai@5.0.44(zod@4.1.9):
     dependencies:
-      '@ai-sdk/gateway': 1.0.23(zod@3.24.1)
+      '@ai-sdk/gateway': 1.0.23(zod@4.1.9)
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.9(zod@3.24.1)
+      '@ai-sdk/provider-utils': 3.0.9(zod@4.1.9)
       '@opentelemetry/api': 1.9.0
-      zod: 3.24.1
+      zod: 4.1.9
 
   eventsource-parser@3.0.6: {}
 
@@ -139,4 +142,4 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  zod@3.24.1: {}
+  zod@4.1.9: {}

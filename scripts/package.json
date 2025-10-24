@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.14",
-    "ai": "^5.0.44"
+    "ai": "^5.0.44",
+    "zod": "^4.1.9"
   },
   "devDependencies": {
     "@types/node": "^22.18.3",

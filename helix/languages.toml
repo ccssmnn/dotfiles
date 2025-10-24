@@ -12,25 +12,25 @@ auto-format = true
 
 [[language]]
 name = "jsx"
-language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
@@ -38,6 +38,25 @@ auto-format = true
 name = "go"
 auto-format = true
 formatter = { command = "goimports" }
+
+[language-server.eslint-lsp]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint-lsp.config]
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+format = { enable = true }
+nodePath = ""
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+experimental = {}
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint-lsp.config.codeAction]
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = false }
 
 [language-server.astro-ls]
 command = "astro-ls"
