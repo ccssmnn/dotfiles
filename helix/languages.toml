@@ -41,7 +41,7 @@ formatter = { command = "goimports" }
 
 [language-server.eslint-lsp]
 command = "vscode-eslint-language-server"
-args = ["--stdio"]
+args = ["--stdio", "--max-old-space-size=8192"]
 
 [language-server.eslint-lsp.config]
 codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
