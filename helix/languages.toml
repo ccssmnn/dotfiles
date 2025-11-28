@@ -1,19 +1,19 @@
 [[language]]
 name = "html"
 language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
 
 [[language]]
 name = "css"
 language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
 name = "jsx"
 language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+formatter = { command = 'prettier', args = ["--parser", "babel"] }
 auto-format = true
 
 [[language]]
@@ -25,7 +25,7 @@ auto-format = true
 [[language]]
 name = "javascript"
 language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+formatter = { command = 'prettier', args = ["--parser", "babel"] }
 auto-format = true
 
 [[language]]
@@ -61,7 +61,7 @@ showDocumentation = { enable = false }
 [language-server.astro-ls]
 command = "astro-ls"
 args = ["--stdio"]
-config = { typescript = { tsdk = "/Users/carlassmann/Library/pnpm/global/5/node_modules/typescript/lib/" }}
+config = { typescript = { tsdk = "" }}
 
 [[language]]
 name = "astro"

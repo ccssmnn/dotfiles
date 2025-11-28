@@ -1,7 +1,43 @@
 [init]
 	defaultBranch = main
+
 [user]
 	email = assmann@hey.com
 	name = Carl Assmann
+
 [core]
 	editor = hx +
+	excludesfile = ~/.gitignore_global
+
+[pull]
+	rebase = true
+
+[push]
+	default = current
+	autoSetupRemote = true
+
+[rerere]
+	enabled = true
+
+[alias]
+	st = status -sb
+	co = checkout
+	br = branch
+	ci = commit
+	cm = commit -m
+	ca = commit --amend
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ls = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+	undo = reset --soft HEAD^
+	unstage = reset HEAD --
+	amend = commit --amend --no-edit
+
+[diff]
+	colorMoved = zebra
+
+[merge]
+	conflictstyle = zdiff3
+
+[rebase]
+	autoStash = true
+	autoSquash = true

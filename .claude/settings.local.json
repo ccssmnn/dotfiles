@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/carlassmann/Library/pnpm/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

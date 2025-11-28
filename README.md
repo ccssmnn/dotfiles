@@ -1,6 +1,19 @@
 # ccssmnn - .dotfiles
 
-## Homebrew
+## Quick Setup
+
+```bash
+# clone repo
+git clone https://github.com/ccssmnn/dotfiles ~/Projects/dotfiles
+cd ~/Projects/dotfiles
+
+# run automated install
+./install.sh
+```
+
+## Manual Setup
+
+### Homebrew
 
 Install [Homebrew](https://brew.sh)
 
@@ -19,9 +32,9 @@ brew install \
   xplr 
 ```
 
-## NodeJS
+### NodeJS
 
-Install [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+Install [fnm](https://github.com/Schniz/fnm?tab=readme-ov-file#installation)
 
 ```bash
 # use pnpm
@@ -39,8 +52,28 @@ pnpm add -g \
   @tailwindcss/language-server \
   @astrojs/language-server \
   vscode-langservers-extracted
+
+# link custom scripts globally
+cd ~/Projects/dotfiles/scripts
+pnpm install
+pnpm link --global
 ```
 
-## Fonts
+### Fonts
 
 I'm using Geist Mono Nerd Font. [Download here](https://www.nerdfonts.com/font-downloads)
+
+## What Gets Symlinked
+
+- `~/.zshrc` → `zsh/.zshrc`
+- `~/.zshenv` → `zsh/.zshenv`
+- `~/.gitconfig` → `git/.gitconfig`
+- `~/.gitignore_global` → `git/.gitignore_global`
+- `~/.aerospace.toml` → `aerospace/aerospace.toml`
+- `~/.config/helix/` → `helix/`
+- `~/.config/ghostty/config` → `ghostty/config`
+- `~/.config/xplr/` → `xplr/`
+- `~/.config/md-ai/config.json` → `md-ai/config.json`
+- `~/.config/md-ai/SYSTEM.md` → `md-ai/SYSTEM.md`
+- `~/.config/opencode/opencode.json` → `opencode/opencode.json`
+- `~/.config/opencode/AGENTS.md` → `opencode/AGENTS.md`
