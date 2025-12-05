@@ -1,14 +1,7 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
 # fnm
-FNM_PATH="$HOME/Library/Application Support/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$HOME/Library/Application Support/fnm:$PATH"
-  eval "`fnm env`"
-fi
-
 eval "$(fnm env --use-on-cd --shell zsh)"
-
 fnm use --log-level quiet 22
 
 # pnpm

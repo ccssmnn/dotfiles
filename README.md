@@ -28,6 +28,7 @@ brew install \
   lazydocker \
   zoxide \
   fzf \
+  git-delta \
   marksman \
   xplr 
 ```
