@@ -1,4 +1,4 @@
-version = "0.21.9"
+version = "1.0.1"
 
 -- Theme: Rose Pine
 xplr.config.general.focus_ui.style.add_modifiers = { "Bold" }
@@ -36,7 +36,7 @@ xplr.config.general.enable_mouse = true
 -- Sorting
 xplr.config.general.initial_sorting = {
   { sorter = "ByCanonicalIsDir", reverse = true },
-  { sorter = "ByICanonicalName", reverse = false },
+  { sorter = "ByIRelativePath", reverse = false },
 }
 
 -- Layout

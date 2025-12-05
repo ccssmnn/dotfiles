@@ -3,13 +3,4 @@
   "theme": "rosepine",
   "autoshare": false,
   "autoupdate": true,
-  "mcp": {
-    "chrome-devtools": {
-      "type": "local",
-      "command": [
-        "pnpx",
-        "chrome-devtools-mcp@latest"
-      ],
-    }
-  }
 }

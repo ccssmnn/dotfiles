@@ -61,7 +61,7 @@ showDocumentation = { enable = false }
 [language-server.astro-ls]
 command = "astro-ls"
 args = ["--stdio"]
-config = { typescript = { tsdk = "" }}
+config = { typescript = { tsdk = "/Users/carlassmann/Library/pnpm/global/5/node_modules/typescript/lib/" }}
 
 [[language]]
 name = "astro"

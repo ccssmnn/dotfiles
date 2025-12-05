@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Read(//Users/carlassmann/Library/pnpm/**)"
+      "Bash(pnpm list:*)"
     ],
     "deny": [],
     "ask": []
