@@ -1,3 +1,5 @@
+autoload -Uz compinit && compinit
+
 eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh --cmd cd)"
@@ -9,7 +11,7 @@ export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
 
 # bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun" && compdef _bun bun
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -33,3 +35,4 @@ alias cpwd="pwd | pbcopy"
 
 # show path entries one per line
 alias path='echo $PATH | tr ":" "\n"'
+source /Users/carlassmann/.config/op/plugins.sh

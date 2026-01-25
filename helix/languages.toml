@@ -83,3 +83,18 @@ auto-format = true
 name = "json"
 language-servers = ["vscode-json-language-server"]
 
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py", "pyi"]
+language-servers = [ "pyright", "ruff-lsp" ]
+formatter = { command = "ruff", args = ["format", "-"] }
+auto-format = true
+
+[language-server.pyright]
+command = "pyright"
+args = ["--stdio"]
+
+[language-server.ruff-lsp]
+command = "ruff-lsp"
