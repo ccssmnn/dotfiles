@@ -26,3 +26,11 @@ project. The patterns you establish will be copied. The corners
 you cut will be cut again.
 
 Fight entropy. **Leave the codebase better than you found it.**
+
+## Code
+
+When writing code, optimize the code for readability.
+Avoid comments. Instead take advantage of variable names and function encapsulation
+to create code that is nice to read.
+Then there is no reason to explain WHAT the code is doing anymore.
+If not obvious, you still can add comments that explain WHY code is there.

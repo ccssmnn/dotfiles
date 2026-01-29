@@ -1,39 +1,47 @@
+# ---------------------------------------------------------------------------
+# Helix languages.toml – ready to paste
+# Deno LSP for Supabase Edge Functions, TS/JS LSP for the Vite frontend
+# ---------------------------------------------------------------------------
+
 [[language]]
 name = "html"
-language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
-formatter = { command = 'prettier', args = ["--parser", "html"] }
+language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
+formatter = { command = "prettier", args = ["--parser", "html"] }
 auto-format = true
 
 [[language]]
 name = "css"
-language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
-formatter = { command = 'prettier', args = ["--parser", "css"] }
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
+formatter = { command = "prettier", args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
 name = "jsx"
-language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
-formatter = { command = 'prettier', args = ["--parser", "babel"] }
+language-servers = ["typescript-language-server", "tailwindcss-ls", "eslint-lsp"]
+formatter = { command = "prettier", args = ["--parser", "babel"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+language-servers = ["typescript-language-server", "tailwindcss-ls", "eslint-lsp"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
-formatter = { command = 'prettier', args = ["--parser", "babel"] }
+language-servers = ["deno-lsp", "typescript-language-server", "tailwindcss-ls", "eslint-lsp"]
+formatter = { command = "prettier", args = ["--parser", "babel"] }
 auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = [ "typescript-language-server", "tailwindcss-ls", "eslint-lsp" ]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+language-servers = ["deno-lsp", "typescript-language-server", "tailwindcss-ls", "eslint-lsp"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
+# -----------------------------------------------------------------------------
+# Other languages
+# -----------------------------------------------------------------------------
 [[language]]
 name = "go"
 auto-format = true
@@ -61,19 +69,21 @@ showDocumentation = { enable = false }
 [language-server.astro-ls]
 command = "astro-ls"
 args = ["--stdio"]
-config = { typescript = { tsdk = "/Users/carlassmann/Library/pnpm/global/5/node_modules/typescript/lib/" }}
+config = { typescript = { tsdk = "/Users/carlassmann/Library/pnpm/global/5/node_modules/typescript/lib/" } }
 
 [[language]]
 name = "astro"
 scope = "source.astro"
 injection-regex = "astro"
 file-types = ["astro"]
-language-servers = ["astro-ls", "tailwindcss-ls" ]
+language-servers = ["astro-ls", "tailwindcss-ls"]
 formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
 auto-format = true
 
-[language-server]
-prisma-language-server = { command = "prisma-language-server", args = ["--stdio"], config = { prisma = { enableDiagnostics = true } } }
+[language-server.prisma-language-server]
+command = "prisma-language-server"
+args = ["--stdio"]
+config = { prisma = { enableDiagnostics = true } }
 
 [[language]]
 name = "prisma"
@@ -88,7 +98,7 @@ name = "python"
 scope = "source.python"
 injection-regex = "python"
 file-types = ["py", "pyi"]
-language-servers = [ "pyright", "ruff-lsp" ]
+language-servers = ["pyright", "ruff-lsp"]
 formatter = { command = "ruff", args = ["format", "-"] }
 auto-format = true
 
@@ -98,3 +108,18 @@ args = ["--stdio"]
 
 [language-server.ruff-lsp]
 command = "ruff-lsp"
+
+[language-server.deno-lsp]
+command = "deno"
+args = ["lsp"]
+required-root-patterns = ["deno.json", "deno.jsonc"]
+
+[language-server.deno-lsp.config.deno]
+enable = true
+lint = true
+unstable = true
+
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+required-root-patterns = ["package.json", "tsconfig.json"]
