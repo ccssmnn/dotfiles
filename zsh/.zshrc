@@ -37,3 +37,4 @@ alias cpwd="pwd | pbcopy"
 # show path entries one per line
 alias path='echo $PATH | tr ":" "\n"'
 source /Users/carlassmann/.config/op/plugins.sh
+. "/Users/carlassmann/.deno/env"

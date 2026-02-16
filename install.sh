@@ -12,6 +12,7 @@ mkdir -p "$HOME/.config/ghostty"
 mkdir -p "$HOME/.config/xplr"
 mkdir -p "$HOME/.config/md-ai"
 mkdir -p "$HOME/.config/opencode"
+mkdir -p "$HOME/Library/Application Support/lazygit"
 
 # Function to create symlink (overwrites existing)
 create_symlink() {
@@ -50,6 +51,7 @@ create_symlink "$DOTFILES_DIR/md-ai/config.json" "$HOME/.config/md-ai/config.jso
 create_symlink "$DOTFILES_DIR/md-ai/SYSTEM.md" "$HOME/.config/md-ai/SYSTEM.md"
 create_symlink "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 create_symlink "$DOTFILES_DIR/opencode/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
+create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 
 echo ""
 echo "📦 Installing scripts..."

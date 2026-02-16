@@ -3,4 +3,14 @@
   "theme": "rosepine",
   "autoshare": false,
   "autoupdate": true,
+  "mcp": {
+    "Soloterm": {
+      "type": "remote",
+      "url": "http://localhost:45678"
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["bunx", "chrome-devtools-mcp@latest"]
+    }
+  },
 }
