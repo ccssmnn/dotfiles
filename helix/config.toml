@@ -1,4 +1,4 @@
-theme = "rose_pine"
+theme = "vesper"
 
 [editor]
 color-modes = true
@@ -52,8 +52,8 @@ A = "@|hx-ai<space>-f<space>'<C-r>%'"
 s = "@|hx-sort<ret>"
 t = "@|hx-tags<ret>sxxx<ret>c"
 
-d = ":theme rose_pine"
-l = ":theme rose_pine_dawn"
+d = ":theme vesper"
+l = ":theme github_light"
 
 [keys.select.L]
 a = "@|hx-ai<space>-f<space>'<C-r>%'<ret>"
@@ -62,5 +62,5 @@ A = "@|hx-ai<space>-f<space>'<C-r>%'"
 s = "@|hx-sort<ret>"
 t = "@|hx-tags<ret>sxxx<ret>c"
 
-d = ":theme rose_pine"
-l = ":theme rose_pine_dawn"
+d = ":theme vesper"
+l = ":theme github_light"

@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "rosepine",
+  "theme": "vesper",
   "autoshare": false,
   "autoupdate": true,
   "mcp": {
@@ -10,7 +10,10 @@
     },
     "chrome-devtools": {
       "type": "local",
-      "command": ["bunx", "chrome-devtools-mcp@latest"]
+      "command": [
+        "bunx",
+        "chrome-devtools-mcp@latest"
+      ]
     }
   },
 }
