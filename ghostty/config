@@ -1,4 +1,4 @@
-theme = light:Github Light Default,dark:Vesper
+theme = light:Github Light Default,dark:Github Dark Default
 
 font-family = GeistMono Nerd Font
 font-thicken = true

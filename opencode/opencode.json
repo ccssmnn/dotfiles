@@ -1,6 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "vesper",
   "autoshare": false,
   "autoupdate": true,
   "mcp": {
@@ -16,4 +15,5 @@
       ]
     }
   },
+  "small_model": "opencode/gpt-5-nano"
 }

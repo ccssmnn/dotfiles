@@ -13,3 +13,6 @@ esac
 # pnpm end
 
 export PATH="$PATH:$(go env GOPATH)/bin"
+
+# custom scripts
+export PATH="$PATH:$HOME/Projects/dotfiles/scripts/bin"

@@ -1,4 +1,4 @@
-theme = "vesper"
+theme = "github_dark"
 
 [editor]
 color-modes = true
@@ -46,21 +46,15 @@ A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
 
 [keys.normal.L]
-a = "@|hx-ai<space>-f<space>'<C-r>%'<ret>"
-A = "@|hx-ai<space>-f<space>'<C-r>%'"
-
 s = "@|hx-sort<ret>"
 t = "@|hx-tags<ret>sxxx<ret>c"
 
-d = ":theme vesper"
+d = ":theme github_dark"
 l = ":theme github_light"
 
 [keys.select.L]
-a = "@|hx-ai<space>-f<space>'<C-r>%'<ret>"
-A = "@|hx-ai<space>-f<space>'<C-r>%'"
-
 s = "@|hx-sort<ret>"
 t = "@|hx-tags<ret>sxxx<ret>c"
 
-d = ":theme vesper"
+d = ":theme github_dark"
 l = ":theme github_light"

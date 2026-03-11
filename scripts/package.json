@@ -3,19 +3,8 @@
   "private": "true",
   "type": "module",
   "bin": {
-    "hx-ai": "./bin/ai.js",
-    "hx-sort": "./bin/sort.js",
-    "hx-tags": "./bin/tags.js"
-  },
-  "dependencies": {
-    "@ai-sdk/google": "^2.0.14",
-    "ai": "^5.0.44",
-    "zod": "^4.1.9"
-  },
-  "devDependencies": {
-    "@types/node": "^22.18.3",
-    "prettier": "^3.6.2",
-    "typescript": "^5.9.2"
+    "hx-sort": "./bin/sort",
+    "hx-tags": "./bin/tags"
   },
   "packageManager": "pnpm@10.10.0"
 }

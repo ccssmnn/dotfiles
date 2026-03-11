@@ -101,9 +101,10 @@ file-types = ["py", "pyi"]
 language-servers = ["pyright", "ruff-lsp"]
 formatter = { command = "ruff", args = ["format", "-"] }
 auto-format = true
+roots = ["pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git"]
 
 [language-server.pyright]
-command = "pyright"
+command = "pyright-langserver"
 args = ["--stdio"]
 
 [language-server.ruff-lsp]

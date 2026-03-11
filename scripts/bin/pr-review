@@ -1,0 +1,220 @@
+#!/usr/bin/env node
+
+import { execSync, spawn } from "node:child_process";
+import fs from "node:fs/promises";
+
+let args = process.argv.slice(2);
+
+if (args.length < 2) {
+  console.log("Usage: pr-review <owner/repo> <pr_number>");
+  console.log("Example: pr-review syntwin/core 42");
+  process.exit(1);
+}
+
+let repo = args[0];
+let prNumber = args[1];
+let [owner, repoName] = repo.split("/");
+
+if (!owner || !repoName) {
+  console.log("Error: Invalid repo format. Use owner/repo");
+  process.exit(1);
+}
+
+try {
+  execSync("which gh", { stdio: "ignore" });
+} catch {
+  console.log("Error: GitHub CLI (gh) is required but not installed");
+  process.exit(1);
+}
+
+console.log(`Extracting PR #${prNumber} from ${repo}...`);
+
+async function runGh(args) {
+  return new Promise((resolve) => {
+    let child = spawn("gh", args, { stdio: ["ignore", "pipe", "pipe"] });
+    let stdout = "";
+    let stderr = "";
+    
+    child.stdout.on("data", (data) => stdout += data.toString());
+    child.stderr.on("data", (data) => stderr += data.toString());
+    child.on("close", (code) => resolve(code === 0 ? stdout : ""));
+  });
+}
+
+async function runGhJson(args) {
+  let output = await runGh(args);
+  try {
+    return JSON.parse(output || "{}");
+  } catch {
+    return {};
+  }
+}
+
+let prJson = await runGhJson([
+  "pr", "view", prNumber,
+  "--repo", repo,
+  "--json", "number,title,author,baseRefName,headRefName,body,mergeStateStatus,reviewDecision,state,isDraft,url"
+]);
+
+if (!prJson.number) {
+  console.log("Error: Could not fetch PR data. Check permissions and PR number.");
+  process.exit(1);
+}
+
+let [
+  filesJson,
+  diff,
+  inlineComments,
+  issueComments,
+  reviews,
+  checksOutput
+] = await Promise.all([
+  runGhJson(["pr", "view", prNumber, "--repo", repo, "--json", "files"]),
+  runGh(["pr", "diff", prNumber, "--repo", repo]),
+  runGhJson(["api", `repos/${owner}/${repoName}/pulls/${prNumber}/comments`, "--paginate"]).then(r => Array.isArray(r) ? r : []),
+  runGhJson(["api", `repos/${owner}/${repoName}/issues/${prNumber}/comments`, "--paginate"]).then(r => Array.isArray(r) ? r : []),
+  runGhJson(["api", `repos/${owner}/${repoName}/pulls/${prNumber}/reviews`, "--paginate"]).then(r => Array.isArray(r) ? r : []),
+  runGh(["pr", "checks", prNumber, "--repo", repo]).then(r => r || "Checks not available or no permission")
+]);
+
+let outputFile = `pr-review-extract-${prNumber}.md`;
+
+function formatAuthor(author) {
+  if (!author) return "";
+  return author.login || author;
+}
+
+let content = `# PR Review Extract: ${repo}#${prNumber}
+
+- **URL:** ${prJson.url || ""}
+- **Title:** ${prJson.title || ""}
+- **Author:** ${formatAuthor(prJson.author)}
+- **Base <- Head:** ${prJson.baseRefName || ""} <- ${prJson.headRefName || ""}
+- **State / Review decision / Merge status:** ${prJson.state || ""} / ${prJson.reviewDecision || ""} / ${prJson.mergeStateStatus || ""}
+
+## 1) Change Summary
+
+**Intent:**
+${prJson.body || ""}
+
+**Files Changed:**
+`;
+
+if (filesJson.files) {
+  for (let file of filesJson.files) {
+    content += `- \`${file.path}\` (+${file.additions} / -${file.deletions})\n`;
+  }
+}
+
+content += `
+## 2) Full Diff
+
+\`\`\`diff
+${diff}
+\`\`\`
+
+## 3) Review Timeline
+
+`;
+
+inlineComments.sort((a, b) => new Date(a.created_at || 0) - new Date(b.created_at || 0));
+for (let comment of inlineComments) {
+  content += `• **Reviewer:** ${comment.user?.login || "Unknown"}\n`;
+  content += `• **Type:** Inline comment\n`;
+  content += `• **File:** \`${comment.path}\` Line: ${comment.line || comment.original_line || "N/A"}\n`;
+  content += `• **Comment:**\n> ${(comment.body || "").split("\n").join("\n> ")}\n`;
+  content += `• **Timestamp:** ${comment.created_at || "null"}\n`;
+  content += `• **Status:** ${comment.state || "unknown"}\n`;
+  content += `---\n\n`;
+}
+
+issueComments.sort((a, b) => new Date(a.created_at || 0) - new Date(b.created_at || 0));
+for (let comment of issueComments) {
+  content += `• **Commenter:** ${comment.user?.login || "Unknown"}\n`;
+  content += `• **Type:** General comment\n`;
+  content += `• **Comment:**\n> ${(comment.body || "").split("\n").join("\n> ")}\n`;
+  content += `• **Timestamp:** ${comment.created_at}\n`;
+  content += `---\n\n`;
+}
+
+reviews.sort((a, b) => new Date(a.submitted_at || 0) - new Date(b.submitted_at || 0));
+for (let review of reviews) {
+  content += `• **Reviewer:** ${review.user?.login || "Unknown"}\n`;
+  content += `• **Type:** Review (${review.state})\n`;
+  if (review.body) {
+    content += `• **Summary:**\n> ${review.body.split("\n").join("\n> ")}\n`;
+  }
+  content += `• **Timestamp:** ${review.submitted_at}\n`;
+  content += `---\n\n`;
+}
+
+content += `## 4) Final Outcome
+
+• **Review Decision:** ${prJson.reviewDecision || ""}
+• **Merge State:** ${prJson.mergeStateStatus || ""}
+• **PR State:** ${prJson.state || ""}
+• **Is Draft:** ${prJson.isDraft || false}
+
+**Checks Status:**
+\`\`\`
+${checksOutput}
+\`\`\`
+
+## 5) Review Lessons (for AI learning)
+
+_Extracted from review patterns. Review manually for accuracy._
+
+**Must-fix patterns noticed:**
+- (Review comments mentioning "must", "should", "need to", "fix" for logic issues)
+
+**Nice-to-have preferences:**
+- (Comments marked as "nit", "suggestion", "consider", optional improvements)
+
+**Code style/architecture expectations:**
+- (Naming conventions, file organization, patterns mentioned)
+
+**Testing expectations:**
+- (Comments about tests, coverage, edge cases)
+
+**Communication style:**
+- (Reviewer tone: direct/conversational, strict/permissive, emoji usage)
+
+**Red flags reviewer repeatedly catches:**
+- (Security issues, performance concerns, repeated mistakes)
+
+_Review the raw comments above to manually fill these sections._
+
+## 6) Structured Appendix (YAML)
+
+\`\`\`yaml
+repo: ${repo}
+pr_number: ${prNumber}
+decision: ${prJson.reviewDecision || ""}
+url: ${prJson.url || ""}
+author: ${formatAuthor(prJson.author)}
+base_ref: ${prJson.baseRefName || ""}
+head_ref: ${prJson.headRefName || ""}
+state: ${prJson.state || ""}
+merge_state: ${prJson.mergeStateStatus || ""}
+is_draft: ${prJson.isDraft || false}
+
+files_changed:
+`;
+
+if (filesJson.files) {
+  for (let file of filesJson.files) {
+    content += `  - path: ${file.path}\n    additions: ${file.additions}\n    deletions: ${file.deletions}\n`;
+  }
+}
+
+content += `
+must_fix: []
+preferences: []
+red_flags: []
+test_expectations: []
+style_signals: []
+\`\`\`
+`;
+
+await fs.writeFile(outputFile, content);
+console.log(`\n✅ Extracted to: ${outputFile}`);

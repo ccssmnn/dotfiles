@@ -34,7 +34,11 @@ alias p="cd ~/Projects"
 # copy current directory to clipboard
 alias cpwd="pwd | pbcopy"
 
+# extract PR review data from GitHub
+alias prx="pr-review"
+
 # show path entries one per line
 alias path='echo $PATH | tr ":" "\n"'
+[ -f "$HOME/.config/secrets/env" ] && source "$HOME/.config/secrets/env"
 source /Users/carlassmann/.config/op/plugins.sh
 . "/Users/carlassmann/.deno/env"

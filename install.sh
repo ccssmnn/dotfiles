@@ -12,24 +12,152 @@ mkdir -p "$HOME/.config/ghostty"
 mkdir -p "$HOME/.config/xplr"
 mkdir -p "$HOME/.config/md-ai"
 mkdir -p "$HOME/.config/opencode"
+mkdir -p "$HOME/.claude"
+mkdir -p "$HOME/.codex"
+mkdir -p "$HOME/.config/pi"
+mkdir -p "$HOME/.pi/agent"
+mkdir -p "$HOME/.config/secrets"
 mkdir -p "$HOME/Library/Application Support/lazygit"
 
-# Function to create symlink (overwrites existing)
+# Function to create symlink
 create_symlink() {
   local source="$1"
   local target="$2"
-  
-  # Remove existing file/symlink
-  if [ -e "$target" ] || [ -L "$target" ]; then
+
+  if [ -L "$target" ]; then
     rm -rf "$target"
+  elif [ -e "$target" ]; then
+    local reply
+    read -r -p "⚠️  $target exists and is not a symlink. Replace it? [y/N] " reply
+    case "$reply" in
+      [yY]|[yY][eE][sS])
+        rm -rf "$target"
+        ;;
+      *)
+        echo "- Skipped $target"
+        return 0
+        ;;
+    esac
   fi
-  
-  # Create parent directory if needed
+
   mkdir -p "$(dirname "$target")"
-  
-  # Create symlink
   ln -sf "$source" "$target"
   echo "✓ Linked $target"
+}
+
+SECRETS_FILE="$HOME/.config/secrets/env"
+SECRETS_MANIFEST="$DOTFILES_DIR/agents/secrets.required"
+
+ensure_secrets_file() {
+  touch "$SECRETS_FILE"
+  chmod 600 "$SECRETS_FILE"
+}
+
+get_secret_value() {
+  local key="$1"
+  local line
+  line=$(grep -E "^export ${key}=" "$SECRETS_FILE" | tail -n 1 || true)
+  line="${line#export ${key}=}"
+  line="${line#\"}"
+  line="${line%\"}"
+  echo "$line"
+}
+
+set_secret_value() {
+  local key="$1"
+  local value="$2"
+  local escaped="$value"
+  escaped="${escaped//\\/\\\\}"
+  escaped="${escaped//\"/\\\"}"
+
+  local tmp
+  tmp=$(mktemp)
+  awk -v key="$key" -v value="$escaped" '
+    BEGIN { replaced = 0 }
+    {
+      if ($0 ~ "^export " key "=") {
+        if (!replaced) {
+          print "export " key "=\"" value "\""
+          replaced = 1
+        }
+      } else {
+        print $0
+      }
+    }
+    END {
+      if (!replaced) {
+        print "export " key "=\"" value "\""
+      }
+    }
+  ' "$SECRETS_FILE" > "$tmp"
+  mv "$tmp" "$SECRETS_FILE"
+  chmod 600 "$SECRETS_FILE"
+}
+
+prompt_secret() {
+  local key="$1"
+  local description="$2"
+  local current
+  current=$(get_secret_value "$key")
+
+  if [ -n "$current" ] && [ "$current" != "REPLACE_ME" ]; then
+    echo "✓ Secret already set: $key"
+    return 0
+  fi
+
+  if [ ! -r /dev/tty ]; then
+    echo "- No TTY for secret prompt. Leaving placeholder for $key"
+    set_secret_value "$key" "REPLACE_ME"
+    return 0
+  fi
+
+  echo "" > /dev/tty
+  echo "🔐 Required secret: $key" > /dev/tty
+  echo "   $description" > /dev/tty
+
+  local value
+  while true; do
+    read -r -s -p "Enter value for $key (or type 'skip'): " value < /dev/tty
+    echo "" > /dev/tty
+
+    if [ "$value" = "skip" ]; then
+      echo "- Skipped $key (set it later in $SECRETS_FILE)"
+      set_secret_value "$key" "REPLACE_ME"
+      return 0
+    fi
+
+    if [ -z "$value" ]; then
+      echo "- Value cannot be empty"
+      continue
+    fi
+
+    set_secret_value "$key" "$value"
+    echo "✓ Saved $key in $SECRETS_FILE"
+    return 0
+  done
+}
+
+setup_required_secrets() {
+  ensure_secrets_file
+
+  if [ ! -f "$SECRETS_MANIFEST" ]; then
+    echo "- No secrets manifest found at $SECRETS_MANIFEST"
+    return 0
+  fi
+
+  while IFS='|' read -r key description; do
+    if [ -z "$key" ]; then
+      continue
+    fi
+
+    case "$key" in
+      \#*)
+        continue
+        ;;
+    esac
+
+    prompt_secret "$key" "$description"
+  done < "$SECRETS_MANIFEST"
 }
 
 # Symlink shell configs
@@ -50,21 +178,18 @@ create_symlink "$DOTFILES_DIR/xplr" "$HOME/.config/xplr"
 create_symlink "$DOTFILES_DIR/md-ai/config.json" "$HOME/.config/md-ai/config.json"
 create_symlink "$DOTFILES_DIR/md-ai/SYSTEM.md" "$HOME/.config/md-ai/SYSTEM.md"
 create_symlink "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
-create_symlink "$DOTFILES_DIR/opencode/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
+create_symlink "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
+create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.config/opencode/skills"
+create_symlink "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
+create_symlink "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.codex/AGENTS.md"
+create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.codex/skills"
+create_symlink "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.config/pi/AGENTS.md"
+create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.config/pi/skills"
+create_symlink "$DOTFILES_DIR/agents/pi/extensions" "$HOME/.pi/agent/extensions"
 create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 
-echo ""
-echo "📦 Installing scripts..."
-cd "$DOTFILES_DIR/scripts"
-if command -v pnpm &> /dev/null; then
-  pnpm install
-  pnpm link --global
-  echo "✓ Scripts installed globally"
-else
-  echo "⚠️  pnpm not found - skipping scripts installation"
-  echo "   Install Node.js and pnpm, then run:"
-  echo "   cd $DOTFILES_DIR/scripts && pnpm install && pnpm link --global"
-fi
+setup_required_secrets
 
 echo ""
 echo "✅ Dotfiles installed successfully!"
@@ -72,5 +197,4 @@ echo ""
 echo "Next steps:"
 echo "  1. Install Homebrew packages (see README.md)"
 echo "  2. Install Node.js via fnm"
-echo "  3. Install global npm packages (see README.md)"
-echo "  4. Restart your terminal or run: source ~/.zshrc"
+echo "  3. Restart your terminal or run: source ~/.zshrc"

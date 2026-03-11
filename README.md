@@ -64,6 +64,14 @@ pnpm link --global
 
 I'm using Geist Mono Nerd Font. [Download here](https://www.nerdfonts.com/font-downloads)
 
+### Secrets
+
+`./install.sh` now prompts for required secrets declared in `agents/secrets.required` and stores them in:
+
+- `~/.config/secrets/env` (chmod `600`)
+
+Your `~/.zshrc` sources this file automatically.
+
 ## What Gets Symlinked
 
 - `~/.zshrc` → `zsh/.zshrc`
@@ -77,4 +85,12 @@ I'm using Geist Mono Nerd Font. [Download here](https://www.nerdfonts.com/font-d
 - `~/.config/md-ai/config.json` → `md-ai/config.json`
 - `~/.config/md-ai/SYSTEM.md` → `md-ai/SYSTEM.md`
 - `~/.config/opencode/opencode.json` → `opencode/opencode.json`
-- `~/.config/opencode/AGENTS.md` → `opencode/AGENTS.md`
+- `~/.config/opencode/AGENTS.md` → `agents/AGENTS.md`
+- `~/.config/opencode/skills` → `agents/skills`
+- `~/.claude/CLAUDE.md` → `agents/AGENTS.md`
+- `~/.claude/skills` → `agents/skills`
+- `~/.codex/AGENTS.md` → `agents/AGENTS.md`
+- `~/.codex/skills` → `agents/skills`
+- `~/.config/pi/AGENTS.md` → `agents/AGENTS.md`
+- `~/.config/pi/skills` → `agents/skills`
+- `~/.pi/agent/extensions` → `agents/pi/extensions`

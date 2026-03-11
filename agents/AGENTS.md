@@ -14,6 +14,7 @@ Currently available:
 - `jazz`, a local first synced database
 - `tilly`, a PWA built with jazz and the AI SDK optimized for mobile
 - `alkalye`, a offline capable PWA built with jazz
+- `blog`, my personal blog
 
 ## Quality
 
