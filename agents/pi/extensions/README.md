@@ -4,6 +4,7 @@
 
 - `web-fetch.ts` → `web_fetch` tool for lightweight doc-page retrieval (Readability-first, fallback extractor, optional link extraction)
 - `brave-search.ts` → `web_search` tool backed by Brave Search API
+- `clear-command.ts` → `/clear` command that starts a new session and reloads extensions, skills, and prompts
 
 ## install deps
 

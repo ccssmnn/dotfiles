@@ -1,0 +1,10 @@
+{
+  "newLine": ["shift+enter", "ctrl+j"],
+  "submit": ["enter"],
+  "selectUp": ["up", "ctrl+p"],
+  "selectDown": ["down", "ctrl+n"],
+  "cycleModelForward": [],
+  "cycleModelBackward": [],
+  "toggleSessionPath": ["alt+p"],
+  "toggleSessionNamedFilter": ["alt+n"]
+}
