@@ -1,10 +1,11 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { DEFAULT_MAX_BYTES, DEFAULT_MAX_LINES, formatSize, truncateHead } from "@mariozechner/pi-coding-agent";
+import { DEFAULT_MAX_BYTES, DEFAULT_MAX_LINES, formatSize, truncateHead, keyHint } from "@mariozechner/pi-coding-agent";
 import { StringEnum } from "@mariozechner/pi-ai";
 import { Type } from "@sinclair/typebox";
 import { mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { Text } from "@mariozechner/pi-tui";
 
 const BraveSearchParams = Type.Object({
 	query: Type.String({ description: "Search query" }),
@@ -82,6 +83,49 @@ export default function braveSearchExtension(pi: ExtensionAPI) {
 			"Prefer this over broad page fetches when you first need candidate sources.",
 		],
 		parameters: BraveSearchParams,
+		renderCall(args, theme) {
+			const query = args.query?.length > 50 ? args.query.substring(0, 47) + "..." : args.query;
+			let text = theme.fg("toolTitle", "web_search ");
+			text += theme.fg("dim", query);
+			return new Text(text, 0, 0);
+		},
+		renderResult(result, { expanded, isPartial }, theme) {
+			if (isPartial) {
+				return new Text(theme.fg("warning", "Searching..."), 0, 0);
+			}
+
+			const details = result.details as BraveSearchDetails | undefined;
+			if (!details) {
+				return new Text(theme.fg("error", "No details"), 0, 0);
+			}
+
+			// Compact view: 1 line
+			const count = details.countReturned;
+			const truncated = details.truncated ? " (truncated)" : "";
+			let text = theme.fg("success", "✓") + theme.fg("muted", ` ${count} result${count !== 1 ? "s" : ""} for "${details.query}"${truncated}`);
+
+			// Expanded view: show results
+			if (expanded) {
+				text += "\n";
+				for (const r of details.results.slice(0, 8)) {
+					text += "\n" + theme.fg("accent", r.title.substring(0, 60));
+					text += "\n  " + theme.fg("dim", r.url.substring(0, 70));
+					if (r.description) {
+						text += "\n  " + theme.fg("muted", r.description.substring(0, 100));
+					}
+				}
+				if (details.results.length > 8) {
+					text += "\n" + theme.fg("dim", `...and ${details.results.length - 8} more`);
+				}
+				if (details.fullOutputPath) {
+					text += "\n" + theme.fg("warning", `Full output: ${details.fullOutputPath}`);
+				}
+			} else {
+				text += ` (${keyHint("expandTools", "expand")})`;
+			}
+
+			return new Text(text, 0, 0);
+		},
 		async execute(_toolCallId, params, signal) {
 			const apiKey = getApiKey();
 			if (!apiKey) {

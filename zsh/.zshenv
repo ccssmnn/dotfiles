@@ -1,9 +1,5 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
-# fnm
-eval "$(fnm env --use-on-cd --shell zsh)"
-fnm use --log-level quiet 22
-
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
@@ -12,10 +8,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export PATH="$PATH:$(go env GOPATH)/bin"
+# go (disabled - not installed)
+# export PATH="$PATH:$(go env GOPATH)/bin"
 
 # custom scripts
-export PATH="$PATH:$HOME/Projects/dotfiles/scripts/bin"
+export PATH="$PATH:$HOME/Developer/dotfiles/scripts/bin"
 
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[ -f "$HOME/.vite-plus/env" ] && . "$HOME/.vite-plus/env"

@@ -5,5 +5,5 @@
   ],
   "theme": "terminal",
   "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.5"
+  "defaultModel": "minimax-m2.5"
 }

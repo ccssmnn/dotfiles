@@ -1,10 +1,11 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { DEFAULT_MAX_BYTES, DEFAULT_MAX_LINES, formatSize, truncateHead } from "@mariozechner/pi-coding-agent";
+import { DEFAULT_MAX_BYTES, DEFAULT_MAX_LINES, formatSize, truncateHead, keyHint } from "@mariozechner/pi-coding-agent";
 import { StringEnum } from "@mariozechner/pi-ai";
 import { Type } from "@sinclair/typebox";
 import { mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { Text } from "@mariozechner/pi-tui";
 
 const WebFetchParams = Type.Object({
 	url: Type.String({ description: "URL to fetch" }),
@@ -204,6 +205,72 @@ export default function webFetchExtension(pi: ExtensionAPI) {
 			"Prefer fetching specific pages instead of broad homepages.",
 		],
 		parameters: WebFetchParams,
+		renderCall(args, theme) {
+			const url = args.url?.length > 60 ? args.url.substring(0, 57) + "..." : args.url;
+			let text = theme.fg("toolTitle", "web_fetch ");
+			text += theme.fg("dim", url);
+			return new Text(text, 0, 0);
+		},
+		renderResult(result, { expanded, isPartial }, theme) {
+			if (isPartial) {
+				return new Text(theme.fg("warning", "Fetching..."), 0, 0);
+			}
+
+			const details = result.details as WebFetchDetails | undefined;
+			if (!details) {
+				return new Text(theme.fg("error", "No details"), 0, 0);
+			}
+
+			// Compact view: 1-2 lines
+			let text = "";
+			if (details.status === 200) {
+				const title = details.title ? ` - ${details.title}` : "";
+				const truncated = details.truncated ? ` (truncated ${formatSize(details.responseBytes)} → ${formatSize(details.responseBytes - (details.responseBytes - (details.truncated ? 1 : 0)))})` : "";
+				text = theme.fg("success", "✓") + theme.fg("muted", ` ${details.finalUrl}${title}${truncated}`);
+			} else {
+				text = theme.fg("error", `✗ ${details.status} ${details.finalUrl}`);
+			}
+
+			// Expanded view: show content preview and links
+			if (expanded) {
+				text += "\n";
+				
+				// Show content snippet (first 500 chars of actual content)
+				const content = result.content?.[0]?.text;
+				if (content) {
+					// Skip the header lines (URL, Status, etc.) and get actual content
+					const lines = content.split("\n");
+					const contentStart = lines.findIndex((l, i) => i > 3 && l.trim().length > 0);
+					const contentSnippet = contentStart >= 0 
+						? lines.slice(contentStart).join("\n").substring(0, 500)
+						: "";
+					if (contentSnippet) {
+						text += "\n" + theme.fg("dim", contentSnippet);
+					}
+				}
+
+				// Show links if available
+				if (details.links && details.links.length > 0) {
+					text += "\n" + theme.fg("muted", `Links (${details.links.length}):`);
+					for (const link of details.links.slice(0, 5)) {
+						text += "\n  " + theme.fg("accent", link.description.substring(0, 50));
+						text += " " + theme.fg("dim", link.url.substring(0, 60));
+					}
+					if (details.links.length > 5) {
+						text += "\n  " + theme.fg("dim", `...and ${details.links.length - 5} more`);
+					}
+				}
+
+				// Show full output path if truncated
+				if (details.fullOutputPath) {
+					text += "\n" + theme.fg("warning", `Full output: ${details.fullOutputPath}`);
+				}
+			} else {
+				text += ` (${keyHint("expandTools", "expand")})`;
+			}
+
+			return new Text(text, 0, 0);
+		},
 		async execute(_toolCallId, params, signal) {
 			const url = normalizeUrl(params.url);
 			const timeoutMs = clampTimeout(params.timeoutMs);

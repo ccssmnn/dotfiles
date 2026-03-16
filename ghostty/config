@@ -1,7 +1,7 @@
 theme = light:Github Light Default,dark:Github Dark Default
 
 font-family = GeistMono Nerd Font
-font-size = 13
+font-size = 15
 adjust-cell-height = 50%
 
 cursor-style-blink = false

@@ -46,8 +46,8 @@ A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
 
 [keys.normal.L]
-s = "@|hx-sort<ret>"
-t = "@|hx-tags<ret>sxxx<ret>c"
+s = "@|sort<ret>"
+t = "@|tags<ret>sxxx<ret>c"
 
 d = ":theme github_dark"
 l = ":theme github_light"

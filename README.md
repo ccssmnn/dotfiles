@@ -4,8 +4,8 @@
 
 ```bash
 # clone repo
-git clone https://github.com/ccssmnn/dotfiles ~/Projects/dotfiles
-cd ~/Projects/dotfiles
+git clone https://github.com/ccssmnn/dotfiles ~/Developer/dotfiles
+cd ~/Developer/dotfiles
 
 # run automated install
 ./install.sh
@@ -31,20 +31,17 @@ brew install \
   tmux \
   git-delta \
   marksman \
-  xplr 
+  xplr \
+  uv \
+  deno 
 ```
 
-### NodeJS
+### NodeJS & Bun
 
-Install [fnm](https://github.com/Schniz/fnm?tab=readme-ov-file#installation)
+Install [Vite+](https://viteplus.dev)
 
 ```bash
-# use pnpm
-corepack enable pnpm
-
-# install tooling for developing in nodejs
-pnpm add -g \
-  @ccssmnn/md-ai \
+bun add -g \
   typescript \
   prettier \
   prettier-plugin-tailwindcss \
@@ -53,12 +50,9 @@ pnpm add -g \
   @prisma/language-server \
   @tailwindcss/language-server \
   @astrojs/language-server \
-  vscode-langservers-extracted
-
-# link custom scripts globally
-cd ~/Projects/dotfiles/scripts
-pnpm install
-pnpm link --global
+  vscode-langservers-extracted \
+  opencode-ai \
+  @mariozechner/pi-coding-agent
 ```
 
 ### Fonts
