@@ -1,8 +1,7 @@
 theme = light:Github Light Default,dark:Github Dark Default
 
 font-family = GeistMono Nerd Font
-font-thicken = true
-font-size = 15
+font-size = 13
 adjust-cell-height = 50%
 
 cursor-style-blink = false
@@ -16,4 +15,3 @@ shell-integration-features = no-cursor
 mouse-hide-while-typing = true 
 
 macos-option-as-alt = left
-keybind = shift+enter=text:\n

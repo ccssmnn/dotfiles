@@ -2,8 +2,13 @@ In all interactions, be extremely (!!!) concise and sacrifice grammar for the sa
 
 ## Planning
 
+For plans, create or update `PLAN.md`.
 At the end of each plan, give me a list of unresolved questions to answer, if any.
 Make the questions extremely concise.
+
+## Todos
+
+For todos, use `TODO.md`.
 
 ## External Reference Repositories
 

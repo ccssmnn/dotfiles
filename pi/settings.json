@@ -1,0 +1,9 @@
+{
+  "lastChangelogVersion": "0.58.3",
+  "packages": [
+    "npm:pi-terminal-theme"
+  ],
+  "theme": "terminal",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "kimi-k2.5"
+}

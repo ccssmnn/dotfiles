@@ -28,6 +28,7 @@ brew install \
   lazydocker \
   zoxide \
   fzf \
+  tmux \
   git-delta \
   marksman \
   xplr 
@@ -64,6 +65,13 @@ pnpm link --global
 
 I'm using Geist Mono Nerd Font. [Download here](https://www.nerdfonts.com/font-downloads)
 
+### Tmux workflow
+
+- Ghostty shells auto-attach to tmux by default
+- `tj` opens an fzf/zoxide-powered project picker and attaches/creates a session for that project
+- `tj .` attaches/creates a session for the current git repo
+- Inside tmux: `Ctrl-g c` opens a new window, `Ctrl-g s` opens the chooser, `Ctrl-g ,` / `Ctrl-g .` switches windows
+
 ### Secrets
 
 `./install.sh` now prompts for required secrets declared in `agents/secrets.required` and stores them in:
@@ -81,6 +89,8 @@ Your `~/.zshrc` sources this file automatically.
 - `~/.aerospace.toml` → `aerospace/aerospace.toml`
 - `~/.config/helix/` → `helix/`
 - `~/.config/ghostty/config` → `ghostty/config`
+- `~/.config/tmux/tmux.conf` → `tmux/.config/tmux/tmux.conf`
+- `~/.config/tmux/themes` → `tmux/.config/tmux/themes`
 - `~/.config/xplr/` → `xplr/`
 - `~/.config/md-ai/config.json` → `md-ai/config.json`
 - `~/.config/md-ai/SYSTEM.md` → `md-ai/SYSTEM.md`
@@ -89,8 +99,13 @@ Your `~/.zshrc` sources this file automatically.
 - `~/.config/opencode/skills` → `agents/skills`
 - `~/.claude/CLAUDE.md` → `agents/AGENTS.md`
 - `~/.claude/skills` → `agents/skills`
+- `~/.claude/settings.local.json` → `.claude/settings.local.json`
 - `~/.codex/AGENTS.md` → `agents/AGENTS.md`
 - `~/.codex/skills` → `agents/skills`
+- `~/.codex/config.toml` → `codex-cli/config.toml`
 - `~/.config/pi/AGENTS.md` → `agents/AGENTS.md`
 - `~/.config/pi/skills` → `agents/skills`
+- `~/.pi/agent/settings.json` → `pi/settings.json`
+- `~/.pi/agent/models.json` → `pi/models.json`
 - `~/.pi/agent/extensions` → `agents/pi/extensions`
+- `~/.pi/agent/keybindings.json` → `agents/pi/keybindings.json`

@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! command -v tmux >/dev/null 2>&1; then
+  echo "tmux is not installed. Install it first: brew install tmux" >&2
+  exit 1
+fi
+
+session_name_for_dir() {
+  local dir="$1"
+  local relative
+
+  if [[ "$dir" == "$HOME" ]]; then
+    relative="home"
+  elif [[ "$dir" == "$HOME"/* ]]; then
+    relative="${dir#"$HOME"/}"
+  else
+    relative="$dir"
+  fi
+
+  printf '%s' "$relative" \
+    | sed -E 's#[/[:space:]]+#-#g' \
+    | tr -cd '[:alnum:]._-' \
+    | sed -E 's/-+/-/g; s/^-//; s/-$//' \
+    | cut -c1-80
+}
+
+pick_dir() {
+  if ! command -v fzf >/dev/null 2>&1; then
+    echo "fzf is required for interactive project picking" >&2
+    exit 1
+  fi
+
+  if command -v zoxide >/dev/null 2>&1; then
+    zoxide query -l | awk '!seen[$0]++' | fzf --prompt='project > ' --height=40% --layout=reverse
+    return
+  fi
+
+  find "$HOME/Projects" -mindepth 1 -maxdepth 3 -type d 2>/dev/null | sort | fzf --prompt='project > ' --height=40% --layout=reverse
+}
+
+case "${1:-}" in
+  "")
+    target_dir="$(pick_dir)"
+    ;;
+  "."|"here")
+    if git_root=$(git rev-parse --show-toplevel 2>/dev/null); then
+      target_dir="$git_root"
+    else
+      target_dir="$PWD"
+    fi
+    ;;
+  *)
+    target_dir="$1"
+    ;;
+esac
+
+if [[ -z "${target_dir:-}" ]]; then
+  exit 0
+fi
+
+if [[ ! -d "$target_dir" ]]; then
+  echo "directory not found: $target_dir" >&2
+  exit 1
+fi
+
+target_dir="$(cd "$target_dir" && pwd)"
+session_name="$(session_name_for_dir "$target_dir")"
+
+if tmux has-session -t "$session_name" 2>/dev/null; then
+  if [[ -n "${TMUX:-}" ]]; then
+    exec tmux switch-client -t "$session_name"
+  else
+    exec tmux attach-session -t "$session_name"
+  fi
+fi
+
+if [[ -n "${TMUX:-}" ]]; then
+  tmux new-session -d -s "$session_name" -c "$target_dir"
+  exec tmux switch-client -t "$session_name"
+else
+  cd "$target_dir"
+  exec tmux new-session -s "$session_name" -c "$target_dir"
+fi

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ -z "${TMUX:-}" ]]; then
+  echo "ttab must be run inside tmux" >&2
+  exit 1
+fi
+
+if [[ $# -lt 1 ]]; then
+  echo "usage: ttab <name> [command ...]" >&2
+  exit 1
+fi
+
+name="$1"
+shift
+
+if [[ $# -eq 0 ]]; then
+  exec tmux new-window -n "$name" -c "#{pane_current_path}"
+else
+  exec tmux new-window -n "$name" -c "#{pane_current_path}" "$@"
+fi
