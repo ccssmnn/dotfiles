@@ -1,0 +1,30 @@
+{
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "chrome-devtools-mcp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun run ~/.claude/hooks/tts-announcements.ts",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

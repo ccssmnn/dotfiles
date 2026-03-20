@@ -1,0 +1,16 @@
+backups/
+cache/
+file-history/
+history.jsonl
+mcp-needs-auth-cache.json
+paste-cache/
+plans/
+plugins/
+policy-limits.json
+projects/
+session-env/
+sessions/
+shell-snapshots/
+telemetry/
+node_modules/
+bun.lock

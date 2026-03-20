@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@types/node": "^22",
+    "openai": "^5"
+  }
+}
