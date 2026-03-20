@@ -1,0 +1,10 @@
+node_modules/
+bun.lock
+auth.json
+logs/
+sessions/
+state/
+storage/
+tmp/
+*.local.json
+*.local.jsonc

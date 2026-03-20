@@ -97,9 +97,3 @@ Your `~/.zshrc` sources this file automatically.
 - `~/.codex/AGENTS.md` → `agents/AGENTS.md`
 - `~/.codex/skills` → `agents/skills`
 - `~/.codex/config.toml` → `codex-cli/config.toml`
-- `~/.config/pi/AGENTS.md` → `agents/AGENTS.md`
-- `~/.config/pi/skills` → `agents/skills`
-- `~/.pi/agent/settings.json` → `pi/settings.json`
-- `~/.pi/agent/models.json` → `pi/models.json`
-- `~/.pi/agent/extensions` → `agents/pi/extensions`
-- `~/.pi/agent/keybindings.json` → `agents/pi/keybindings.json`
