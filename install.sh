@@ -10,7 +10,6 @@ echo "🚀 Installing dotfiles..."
 mkdir -p "$HOME/.config/helix"
 mkdir -p "$HOME/.config/ghostty"
 mkdir -p "$HOME/.config/tmux/themes"
-mkdir -p "$HOME/.claude"
 mkdir -p "$HOME/.config/pi"
 mkdir -p "$HOME/.pi/agent"
 mkdir -p "$HOME/.config/secrets"
@@ -170,9 +169,7 @@ create_symlink "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 create_symlink "$DOTFILES_DIR/tmux/.config/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
 create_symlink "$DOTFILES_DIR/tmux/.config/tmux/themes" "$HOME/.config/tmux/themes"
 create_symlink "$DOTFILES_DIR/tmux/.config/tmux/README.md" "$HOME/.config/tmux/README.md"
-create_symlink "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.claude/CLAUDE.md"
-create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
-create_symlink "$DOTFILES_DIR/.claude/settings.local.json" "$HOME/.claude/settings.local.json"
+create_symlink "$DOTFILES_DIR/agents/claude" "$HOME/.claude"
 
 setup_required_secrets
 
