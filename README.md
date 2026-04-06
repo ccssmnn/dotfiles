@@ -38,8 +38,6 @@ brew install \
 
 ### NodeJS & Bun
 
-Install [Vite+](https://viteplus.dev)
-
 ```bash
 bun add -g \
   typescript \
