@@ -44,16 +44,15 @@ alias path='echo $PATH | tr ":" "\n"'
 # dotfiles custom scripts
 export PATH="$HOME/Developer/dotfiles/scripts/bin:$PATH"
 
-# auto-attach tmux in Ghostty unless disabled with TMUX_AUTO_ATTACH=0
-if [[ -o interactive ]] && command -v tmux >/dev/null 2>&1; then
-  if [[ -z "${TMUX:-}" && -z "${SSH_CONNECTION:-}" && "${TERM_PROGRAM:-}" == "ghostty" && "${TMUX_AUTO_ATTACH:-1}" == "1" ]]; then
-    tj .
-  fi
-fi
 
 [ -f "$HOME/.config/secrets/env" ] && source "$HOME/.config/secrets/env"
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
 [ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
 
-# Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+# pnpm
+export PNPM_HOME="/Users/carlassmann/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

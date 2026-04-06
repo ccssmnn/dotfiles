@@ -1,17 +1,7 @@
 {
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
-    "chrome-devtools-mcp@claude-plugins-official": true
+  "permissions": {
+    "defaultMode": "bypassPermissions"
   },
-  "extraKnownMarketplaces": {
-    "chrome-devtools-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "ChromeDevTools/chrome-devtools-mcp"
-      }
-    }
-  },
-  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "Stop": [
       {
@@ -26,5 +16,19 @@
         ]
       }
     ]
-  }
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "chrome-devtools-mcp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "high"
 }
