@@ -11,5 +11,7 @@
       ]
     }
   },
-  "small_model": "opencode/gpt-5-nano"
+  "plugin": [
+    "@warp-dot-dev/opencode-warp"
+  ]
 }
