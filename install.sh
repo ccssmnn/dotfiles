@@ -171,6 +171,18 @@ create_symlink "$DOTFILES_DIR/tmux/.config/tmux/themes" "$HOME/.config/tmux/them
 create_symlink "$DOTFILES_DIR/tmux/.config/tmux/README.md" "$HOME/.config/tmux/README.md"
 create_symlink "$DOTFILES_DIR/agents/claude" "$HOME/.claude"
 
+# Codex picks up AGENTS.md and skills/ from ~/.codex
+create_symlink "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.codex/AGENTS.md"
+create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.codex/skills"
+
+# Opencode reads ~/.config/opencode — link tracked files individually so opencode
+# can still write generated files (bun.lock, node_modules) into the same dir
+create_symlink "$DOTFILES_DIR/agents/opencode/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
+create_symlink "$DOTFILES_DIR/agents/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
+create_symlink "$DOTFILES_DIR/agents/opencode/package.json" "$HOME/.config/opencode/package.json"
+create_symlink "$DOTFILES_DIR/agents/opencode/plugins" "$HOME/.config/opencode/plugins"
+create_symlink "$DOTFILES_DIR/agents/opencode/skills" "$HOME/.config/opencode/skills"
+
 setup_required_secrets
 
 echo ""

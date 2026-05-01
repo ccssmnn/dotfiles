@@ -8,6 +8,9 @@ source <(fzf --zsh)
 
 export EDITOR="hx"
 
+# node
+eval "$(fnm env --use-on-cd --shell zsh)"
+
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun" && compdef _bun bun
 
@@ -21,6 +24,7 @@ alias l="ls -lah"
 alias lg="lazygit"
 alias ld="lazydocker"
 alias oc="opencode"
+alias cc="claude --dangerously-skip-permissions"
 alias reload="source ~/.zshrc"
 alias c="clear"
 alias ..="cd .."
@@ -43,7 +47,6 @@ alias path='echo $PATH | tr ":" "\n"'
 
 # dotfiles custom scripts
 export PATH="$HOME/Developer/dotfiles/scripts/bin:$PATH"
-
 
 [ -f "$HOME/.config/secrets/env" ] && source "$HOME/.config/secrets/env"
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
