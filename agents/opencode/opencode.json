@@ -3,11 +3,10 @@
   "share": "manual",
   "autoupdate": true,
   "mcp": {
-    "chrome-devtools": {
+    "solo": {
       "type": "local",
       "command": [
-        "bunx",
-        "chrome-devtools-mcp@latest"
+        "/Applications/Solo.app/Contents/MacOS/mcp"
       ]
     }
   },

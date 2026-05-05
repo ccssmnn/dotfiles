@@ -180,8 +180,10 @@ create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.codex/skills"
 create_symlink "$DOTFILES_DIR/agents/opencode/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
 create_symlink "$DOTFILES_DIR/agents/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 create_symlink "$DOTFILES_DIR/agents/opencode/package.json" "$HOME/.config/opencode/package.json"
+create_symlink "$DOTFILES_DIR/agents/opencode/agent" "$HOME/.config/opencode/agent"
 create_symlink "$DOTFILES_DIR/agents/opencode/plugins" "$HOME/.config/opencode/plugins"
 create_symlink "$DOTFILES_DIR/agents/opencode/skills" "$HOME/.config/opencode/skills"
+create_symlink "$DOTFILES_DIR/agents/counselors/config.json" "$HOME/.config/counselors/config.json"
 
 setup_required_secrets
 

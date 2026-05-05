@@ -1,6 +1,7 @@
 # opencode
 
 - `opencode.json` holds global opencode config.
+- `agent/` holds tracked custom opencode agents.
 - `plugins/` auto-loads local plugins.
 - `package.json` provides plugin deps.
 
