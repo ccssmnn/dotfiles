@@ -87,6 +87,8 @@ Your `~/.zshrc` sources this file automatically.
 - `~/.config/md-ai/config.json` → `md-ai/config.json`
 - `~/.config/md-ai/SYSTEM.md` → `md-ai/SYSTEM.md`
 - `~/.config/opencode/opencode.json` → `opencode/opencode.json`
+- `~/.config/opencode/agent` → `agents/opencode/agent`
+- `~/.config/counselors/config.json` → `agents/counselors/config.json`
 - `~/.config/opencode/AGENTS.md` → `agents/AGENTS.md`
 - `~/.config/opencode/skills` → `agents/skills`
 - `~/.claude/CLAUDE.md` → `agents/AGENTS.md`

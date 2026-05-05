@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "defaults": {
+    "timeout": 900,
+    "outputDir": "./agents/counselors/out",
+    "readOnly": "bestEffort",
+    "maxContextKb": 50,
+    "maxParallel": 5
+  },
+  "tools": {
+    "claude-opus-4.7": {
+      "binary": "/opt/homebrew/bin/claude",
+      "adapter": "claude",
+      "readOnly": {
+        "level": "enforced"
+      },
+      "extraFlags": [
+        "--model",
+        "claude-opus-4-7"
+      ]
+    },
+    "codex-gpt-5.5": {
+      "binary": "/opt/homebrew/bin/codex",
+      "adapter": "codex",
+      "readOnly": {
+        "level": "enforced"
+      },
+      "timeout": 900,
+      "extraFlags": [
+        "-m",
+        "gpt-5.5"
+      ]
+    },
+    "codex-gpt-5.4": {
+      "binary": "/opt/homebrew/bin/codex",
+      "adapter": "codex",
+      "readOnly": {
+        "level": "enforced"
+      },
+      "timeout": 900,
+      "extraFlags": [
+        "-m",
+        "gpt-5.4"
+      ]
+    },
+    "opencode-go-kimi-k2.6": {
+      "binary": "/Users/carlassmann/.bun/bin/opencode",
+      "readOnly": {
+        "level": "bestEffort",
+        "flags": [
+          "--agent",
+          "counselor",
+          "--dangerously-skip-permissions"
+        ]
+      },
+      "timeout": 900,
+      "extraFlags": [
+        "run",
+        "-m",
+        "opencode-go/kimi-k2.6"
+      ],
+      "custom": true
+    },
+    "opencode-go-glm-5.1": {
+      "binary": "/Users/carlassmann/.bun/bin/opencode",
+      "readOnly": {
+        "level": "bestEffort",
+        "flags": [
+          "--agent",
+          "counselor",
+          "--dangerously-skip-permissions"
+        ]
+      },
+      "timeout": 900,
+      "extraFlags": [
+        "run",
+        "-m",
+        "opencode-go/glm-5.1"
+      ],
+      "custom": true
+    },
+    "opencode-go-deepseek-v4-pro": {
+      "binary": "/Users/carlassmann/.bun/bin/opencode",
+      "readOnly": {
+        "level": "bestEffort",
+        "flags": [
+          "--agent",
+          "counselor",
+          "--dangerously-skip-permissions"
+        ]
+      },
+      "timeout": 900,
+      "extraFlags": [
+        "run",
+        "-m",
+        "opencode-go/deepseek-v4-pro"
+      ],
+      "custom": true
+    }
+  },
+  "groups": {
+    "council": [
+      "claude-opus-4.7",
+      "codex-gpt-5.5",
+      "codex-gpt-5.4",
+      "opencode-go-kimi-k2.6",
+      "opencode-go-glm-5.1",
+      "opencode-go-deepseek-v4-pro"
+    ]
+  }
+}
