@@ -1,24 +1,10 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "defaultMode": "bypassPermissions"
-  },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": false,
-    "chrome-devtools-mcp@claude-plugins-official": false
-  },
-  "extraKnownMarketplaces": {
-    "chrome-devtools-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "ChromeDevTools/chrome-devtools-mcp"
-      }
-    },
-    "claude-code-warp": {
-      "source": {
-        "source": "github",
-        "repo": "warpdotdev/claude-code-warp"
-      }
-    }
   },
   "spinnerVerbs": {
     "mode": "replace",
@@ -63,5 +49,7 @@
     ]
   },
   "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto",
+  "agentPushNotifEnabled": true
 }

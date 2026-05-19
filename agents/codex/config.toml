@@ -1,0 +1,60 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+approval_policy = "never"
+approvals_reviewer = "user"
+sandbox_mode = "danger-full-access"
+
+[projects."/Users/carlassmann/Developer/syntwin-mono"]
+trust_level = "trusted"
+
+[projects."/Users/carlassmann/Developer/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/carlassmann/Developer/mma-cats-monorepo"]
+trust_level = "trusted"
+
+[projects."/Users/carlassmann/Developer/dev-cli"]
+trust_level = "trusted"
+
+[projects."/Users/carlassmann/Developer/work-cli"]
+trust_level = "trusted"
+
+[projects."/Users/carlassmann/Developer/tilly"]
+trust_level = "trusted"
+
+[projects."/Users/carlassmann/Developer/alkalye"]
+trust_level = "trusted"
+
+[projects."/Users/carlassmann/Developer/gitmix"]
+trust_level = "trusted"
+
+[tui]
+theme = "catppuccin-mocha"
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[marketplaces.openai-bundled]
+last_updated = "2026-05-18T12:58:46Z"
+source_type = "local"
+source = "/Users/carlassmann/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-05-16T10:41:29Z"
+source_type = "local"
+source = "/Users/carlassmann/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"

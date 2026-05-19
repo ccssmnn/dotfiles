@@ -11,7 +11,9 @@ projects/
 session-env/
 sessions/
 shell-snapshots/
+stats-cache.json
 telemetry/
+.last-cleanup
 node_modules/
 bun.lock
 image-cache

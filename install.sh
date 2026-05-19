@@ -174,6 +174,7 @@ create_symlink "$DOTFILES_DIR/agents/claude" "$HOME/.claude"
 # Codex picks up AGENTS.md and skills/ from ~/.codex
 create_symlink "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.codex/AGENTS.md"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.codex/skills"
+create_symlink "$DOTFILES_DIR/agents/codex/config.toml" "$HOME/.codex/config.toml"
 
 # Opencode reads ~/.config/opencode — link tracked files individually so opencode
 # can still write generated files (bun.lock, node_modules) into the same dir
