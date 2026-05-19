@@ -96,4 +96,4 @@ Your `~/.zshrc` sources this file automatically.
 - `~/.claude/settings.local.json` → `.claude/settings.local.json`
 - `~/.codex/AGENTS.md` → `agents/AGENTS.md`
 - `~/.codex/skills` → `agents/skills`
-- `~/.codex/config.toml` → `codex-cli/config.toml`
+- `~/.codex/config.toml` → `agents/codex/config.toml`

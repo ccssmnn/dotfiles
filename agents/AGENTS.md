@@ -16,6 +16,11 @@ Currently available:
 - `alkalye`, a offline capable PWA built with jazz
 - `blog`, my personal blog
 
+## Commands
+
+Use `work` to manage running project processes like dev servers and watchers.
+It can also set up a worktree after creation with the configured setup hook.
+
 ## Quality
 
 This codebase will outlive you. Every shortcut you take becomes
