@@ -1,3 +1,5 @@
+
+fpath=("$HOME/.zsh/completions" $fpath)
 autoload -Uz compinit && compinit
 
 eval "$(starship init zsh)"
@@ -24,7 +26,7 @@ alias l="ls -lah"
 alias lg="lazygit"
 alias ld="lazydocker"
 alias oc="opencode"
-alias cc="claude --dangerously-skip-permissions"
+alias cc="claude --dangerously-skip-permissions --model claude-opus-4-6"
 alias reload="source ~/.zshrc"
 alias c="clear"
 alias ..="cd .."
