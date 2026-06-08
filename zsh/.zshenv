@@ -1,5 +1,7 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
+[ -f "$HOME/.config/secrets/env" ] && source "$HOME/.config/secrets/env"
+
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in

@@ -1,8 +1,11 @@
 model = "gpt-5.5"
-model_reasoning_effort = "high"
+model_reasoning_effort = "low"
 approval_policy = "never"
 approvals_reviewer = "user"
 sandbox_mode = "danger-full-access"
+
+notify = ["/Users/carlassmann/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "priority"
 
 [projects."/Users/carlassmann/Developer/syntwin-mono"]
 trust_level = "trusted"
@@ -28,6 +31,9 @@ trust_level = "trusted"
 [projects."/Users/carlassmann/Developer/gitmix"]
 trust_level = "trusted"
 
+[projects."/Users/carlassmann/Developer/museum-zitadelle"]
+trust_level = "trusted"
+
 [tui]
 theme = "catppuccin-mocha"
 
@@ -46,15 +52,82 @@ enabled = true
 [plugins."browser@openai-bundled"]
 enabled = true
 
-[tui.model_availability_nux]
-"gpt-5.5" = 4
-
 [marketplaces.openai-bundled]
-last_updated = "2026-05-18T12:58:46Z"
+last_updated = "2026-06-07T10:12:39Z"
 source_type = "local"
 source = "/Users/carlassmann/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-05-16T10:41:29Z"
+last_updated = "2026-06-01T18:27:39Z"
 source_type = "local"
 source = "/Users/carlassmann/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[desktop]
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+notifications-turn-mode = "always"
+appearanceLightCodeThemeId = "github"
+appearanceDarkCodeThemeId = "github"
+codeFontSize = 14
+
+[desktop.open-in-target-preferences]
+global = "ghostty"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/carlassmann/Developer/syntwin-mono.worktrees/cartesia-error-testing" = "ghostty"
+
+[desktop.appearanceLightChromeTheme]
+accent = "#0969da"
+contrast = 45
+ink = "#1f2328"
+opaqueWindows = false
+surface = "#ffffff"
+
+[desktop.appearanceLightChromeTheme.fonts]
+code = "GeistMono Nerd Font"
+ui = "Geist"
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = "#1a7f37"
+diffRemoved = "#cf222e"
+skill = "#8250df"
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#1f6feb"
+contrast = 60
+ink = "#e6edf3"
+opaqueWindows = false
+surface = "#0d1117"
+
+[desktop.appearanceDarkChromeTheme.fonts]
+code = "GeistMono Nerd Font"
+ui = "Geist"
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#3fb950"
+diffRemoved = "#f85149"
+skill = "#bc8cff"
+
+[features]
+js_repl = false
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/carlassmann/.codex"
+CODEX_HOME = "/Users/carlassmann/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "2de792ebdf729e85542c94275f6654821dddce546d9c7374c915f2297529e313"
+BROWSER_USE_AVAILABLE_BACKENDS = "iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.602.40724"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
