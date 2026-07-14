@@ -1,5 +1,7 @@
 skills/.system
 skills/emil*
 skills/ui
-claude/tasks
+skills/motion
+claude/*
+codex/*
 counselors/out
