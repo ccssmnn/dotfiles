@@ -18,7 +18,8 @@ cd ~/Developer/dotfiles
 Install [Homebrew](https://brew.sh)
 
 ```bash
-brew install --cask ghostty
+brew install --cask ghostty hyperkey
+brew install --cask nikitabobko/tap/aerospace
 
 brew install \
   starship \
@@ -63,6 +64,16 @@ I'm using Geist Mono Nerd Font. [Download here](https://www.nerdfonts.com/font-d
 - `tj` opens an fzf/zoxide-powered project picker and attaches/creates a session for that project
 - `tj .` attaches/creates a session for the current git repo
 - Inside tmux: `Ctrl-g c` opens a new window, `Ctrl-g s` opens the chooser, `Ctrl-g ,` / `Ctrl-g .` switches windows
+
+### AeroSpace workflow
+
+Hyperkey maps Caps Lock to `Ctrl-Option-Cmd-Shift`.
+
+- Move a window: press `Hyper-m`, release, then press `h`, `j`, `k`, or `l`
+- Move a window to workspace 1-9: press `Hyper-m`, release, then press the workspace number
+- Move a window to the next monitor: press `Hyper-m`, release, then press `o`
+- Move the workspace to the next monitor: press `Hyper-m`, release, then press `Tab`
+- Cancel move mode: press `Esc`
 
 ### Secrets
 
