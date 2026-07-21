@@ -20,19 +20,15 @@ create_symlink() {
   local target="$2"
 
   if [ -L "$target" ]; then
+    if [ "$(readlink "$target")" = "$source" ]; then
+      echo "✓ Already linked $target"
+      return 0
+    fi
+
     rm -rf "$target"
   elif [ -e "$target" ]; then
-    local reply
-    read -r -p "⚠️  $target exists and is not a symlink. Replace it? [y/N] " reply
-    case "$reply" in
-      [yY]|[yY][eE][sS])
-        rm -rf "$target"
-        ;;
-      *)
-        echo "- Skipped $target"
-        return 0
-        ;;
-    esac
+    echo "- Skipped $target (not a symlink)"
+    return 0
   fi
 
   mkdir -p "$(dirname "$target")"
@@ -162,6 +158,9 @@ create_symlink "$DOTFILES_DIR/zsh/.zshenv" "$HOME/.zshenv"
 # Symlink git configs
 create_symlink "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
 create_symlink "$DOTFILES_DIR/git/.gitignore_global" "$HOME/.gitignore_global"
+
+# Symlink Aerospace config
+create_symlink "$DOTFILES_DIR/aerospace/aerospace.toml" "$HOME/.aerospace.toml"
 
 # Symlink .config directories
 create_symlink "$DOTFILES_DIR/helix" "$HOME/.config/helix"
